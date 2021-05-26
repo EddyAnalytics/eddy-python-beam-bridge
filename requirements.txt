@@ -1,0 +1,4 @@
+apache_beam==2.29.0
+apache_beam[gcp]==2.29.0
+celery==5.1.0
+kafka-python==2.0.2
