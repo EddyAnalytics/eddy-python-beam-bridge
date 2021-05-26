@@ -1,4 +1,6 @@
-FROM python:3.7-slim as requirements
+FROM openjdk:11-slim
+
+COPY --from=python:3.7-slim / /
 
 WORKDIR /usr/src/app
 

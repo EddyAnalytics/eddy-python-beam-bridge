@@ -15,15 +15,16 @@ app = Celery("app", broker="redis://{}:6379".format(config.REDIS_HOST))
 @app.task
 def submit_beam_python(definition):
     logging.info(definition)
+    definition = json.loads(definition)
+
     process = subprocess.Popen(
-        ["python3", definition],
+        ["python3", "-c", definition["beamScript"]],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
     stdout, stderr = process.communicate()
     stdout, stderr = stdout.decode("utf-8"), stderr.decode("utf-8")
 
-    definition = json.loads(definition)
     feedback = {"id": definition["id"], "success": not bool(stderr)}
 
     logging.info(stdout)
