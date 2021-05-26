@@ -3,3 +3,4 @@ apache_beam[gcp]==2.29.0
 celery==4.4.7
 kafka-python==1.4.7
 redis==3.3.11
+boto3==1.17.80
