@@ -11,6 +11,7 @@ import config
 
 app = Celery("app", broker="redis://{}:6379".format(config.REDIS_HOST))
 
+
 @app.task
 def submit_beam_python(definition):
     logging.info(definition)
@@ -34,7 +35,8 @@ def submit_beam_python(definition):
 
     producer = KafkaProducer(bootstrap_servers=config.BOOTSTRAP_SERVERS)
     future = producer.send(
-        "{}.{}.feedback".format(definition["projectId"], definition["pipelineId"]),
+        "{}.{}.feedback".format(
+            definition["projectId"], definition["pipelineId"]),
         json.dumps(feedback).encode("utf-8"),
     )
     result = future.get(timeout=10)
