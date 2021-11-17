@@ -1,5 +1,5 @@
-apache_beam==2.29.0
-apache_beam[gcp]==2.29.0
+apache_beam==2.34.0
+apache_beam[gcp]==2.34.0
 beam-nuggets==0.18.0
 celery==4.4.7
 redis==3.3.11
